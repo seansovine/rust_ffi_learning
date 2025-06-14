@@ -1,0 +1,3 @@
+[submodule "skedge"]
+	path = skedge
+	url = git@github.com:deciduously/skedge.git
