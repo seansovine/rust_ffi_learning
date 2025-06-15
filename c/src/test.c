@@ -11,6 +11,10 @@ void delete(PolymorphicObject *po) { free(po); }
 
 PolymorphicObject *get_test(bool get_test_a) {
   PolymorphicObject *po = malloc(sizeof(PolymorphicObject));
+  if (!po) {
+    return (PolymorphicObject *)0;
+  }
+
   po->delete = delete;
 
   if (get_test_a) {
