@@ -6,13 +6,12 @@ on calling C code from Rust.
 ## Rust example
 
 The file[`src/main.rs`](src/main.rs) has a basic example that calls a C
-function through the Rust FFI that returns a struct containing a function
-pointer that depends on arguments of the function call. It then calls the C
-function pointer from within Rust. The struct that is returned from the C
-function includes a pointer to a cleanup function that calls the libc `free` function
+function through the Rust FFI. The function that is called returns a struct, which itself contains a function
+pointer that depends on arguments of the function call. The Rust program then procides an API that calls the C function pointer. The struct that is returned from the C
+function also includes a pointer to a cleanup function that calls the libc `free` function,
 to delete the memory allocated for the struct. This allows memory allocated
-by the C code to be effectively freed from within Rust. Rust wrappers for
-the FFI-linked C functions are defined in [`src/ffi.rs`](src/ffi.rs).
+by the C code to be effectively freed from within Rust. The Rust wrappers for
+FFI-linked C functions are defined in [`src/ffi.rs`](src/ffi.rs).
 
 ## Example C library
 
