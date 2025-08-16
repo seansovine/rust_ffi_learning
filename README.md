@@ -15,6 +15,6 @@ FFI-linked C functions are defined in [`src/ffi.rs`](src/ffi.rs).
 
 ## Example C library
 
-The simple C library that is used for this example is in the [`c/`](c/)
-subdirectory. See [`c/include/test.h`](c/include/test.h) for the definitions of
-functions and types in the public interface of this library.
+The simple C library used for this example is defined in files in the
+[`c/`](c/) subdirectory. See [`c/include/test.h`](c/include/test.h) for the definitions
+of functions and types in the public interface of this library.
