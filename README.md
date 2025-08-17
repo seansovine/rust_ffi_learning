@@ -11,8 +11,8 @@ pointer that depends on arguments of the function call. The Rust program then ca
 
 The struct that is returned from the C
 function also includes a pointer to a cleanup function that calls the libc `free` function,
-to delete the memory allocated for the struct. This allows memory allocated
-by the C code to be effectively freed from within Rust. The Rust wrappers for
+to free the memory allocated for the struct. This allows memory allocated
+by the C code to be safely freed from within Rust. The Rust wrappers for
 FFI-linked C functions are defined in [`src/ffi.rs`](src/ffi.rs).
 
 ## Example C library
