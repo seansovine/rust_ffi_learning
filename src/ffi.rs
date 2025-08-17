@@ -42,12 +42,12 @@ mod wrappers {
     ///
     pub fn call_test(get_test_a: bool) {
         #[allow(unused_assignments)]
-        unsafe {
-            let mut ptr = ext::get_test(get_test_a);
+        {
+            let mut ptr = unsafe { ext::get_test(get_test_a) };
             assert!(!ptr.is_null());
 
-            // Frees memory allocated by C code.
-            let po = &*ptr;
+            // Convert raw pointer to reference.
+            let po = unsafe { ptr.as_ref().unwrap() };
             (po.f)();
 
             // Frees memory allocated by C code.
@@ -77,14 +77,14 @@ mod wrappers {
 
     pub fn get_test(get_test_a: bool) -> Result<SafePolymorphicObject, String> {
         #[allow(unused_assignments)]
-        unsafe {
-            let mut ptr = ext::get_test(get_test_a);
+        {
+            let mut ptr = unsafe { ext::get_test(get_test_a) };
             if ptr.is_null() {
                 return Err(String::from("Allocation failure in C get_test call."));
             }
 
             // Convert raw pointer to reference (unsafe operation).
-            let po = &*ptr;
+            let po = unsafe { ptr.as_ref().unwrap() };
             let safe_object = SafePolymorphicObject { f: po.f };
 
             // Frees memory allocated by C code.
