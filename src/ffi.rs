@@ -21,6 +21,15 @@ mod ext {
     }
 }
 
+// Note on poninter constness:
+//  We are not directly modifying the pointed-to memory through these
+//  pointers, and don't intend to, so semantically I think it makes
+//  sense to use the const pointer for them. However, the `delete`
+//  function will _free_ the memory that is pointed to. I believe this
+//  won't cause a problem, but we should be very careful with such
+//  functions, as it would be UB if we allowed a reference continue
+//  to refer to a pointed-to location _after_ it's memory is freed.
+
 /// Safe wrappers around foreign types.
 mod wrappers {
     use super::*;
